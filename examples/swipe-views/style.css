@@ -1,0 +1,113 @@
+body {
+	padding:0;
+	margin:0;
+	background:#fff;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	color:#333;
+	font-family: sans-serif;
+	font-size: 1em;
+}
+
+#top-bar {
+  color: #ffffff;
+  overflow: hidden;
+}
+
+#top-bar > .header {
+  background: #03a9f4;
+  border-bottom: 2px solid #0277bd;
+}
+
+#top-bar > .header > h1 {
+  padding: .2em .6em;
+  font-weight: 500;
+}
+
+.tabs {
+  min-width: 100em;
+  background: rgb(234, 234, 234);
+  color: rgb(10, 10, 10);
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid rgb(200, 200, 200);
+  font-size: 1.0em;
+}
+
+.tabs li {
+  border-bottom: 2px solid rgb(200, 200, 200);
+  display: inline-block;
+  list-style-type: none;
+  margin: 0 0 -2px .5em;
+  margin-bottom: -2px;
+}
+
+.tabs li.active {
+  position: relative;
+  border-bottom: 2px solid #0277d1;
+}
+
+.tabs li.active:after  {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: .3em;
+  display: block;
+  background: #03a9f4;
+}
+
+.tabs li.active a {
+  positon: relative;
+}
+
+.tabs li a {
+  display: inline-block;
+  padding: .8em .6em;
+}
+
+.tabs li:not(:first-child) {
+  margin-left: 1px;
+}
+
+.tabs li:not(:first-child):before {
+  content: "";
+  width: 0px;
+  display: inline-block;
+  height: 1.2em;
+  margin-bottom: -4px;
+  margin-left: -1px;
+  border-left: 1px solid rgb(200, 200, 200);
+  border-bottom: 2px solid rgb(200, 200, 200);
+}
+
+h1 {
+	font-size:1.8em;
+	margin:0;
+}
+
+p {
+  margin: 0;
+}
+
+#wrapper {
+	width:100%;
+  position: absolute;
+  top: 95px;
+  bottom: 0;
+	background: #fefefe;
+	border-bottom:1px solid #aaa;
+}
+
+#swipeview-slider > div {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#swipeview-slider > div > div {
+	position:relative;
+	overflow:hidden;
+  padding: 1em;
+}

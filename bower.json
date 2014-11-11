@@ -1,0 +1,36 @@
+{
+  "name": "mobile-swipe-view",
+  "version": "0.0.1",
+  "homepage": "https://github.com/paldepind/web-swipe-view",
+  "authors": [
+    "paldepind <simonfv@gmail.com>"
+  ],
+  "description": "Horizontal swipe views for mobile web applications",
+  "main": "src/swipeview.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "mobile",
+    "horizontal",
+    "swipe",
+    "view",
+    "carousel",
+    "android",
+    "swipe",
+    "views",
+    "pagination"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chai": "~1.10.0",
+    "mocha": "~2.0.1"
+  }
+}

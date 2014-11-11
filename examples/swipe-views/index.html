@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>Swipe views</title>
+  <link href="../../bower_components/normalize.css/normalize.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="../../src/swipeview.js"></script>
+</head>
+
+<body>
+  <div id="top-bar">
+    <div class="header">
+      <h1>&equiv; Test</h2>
+    </div>
+    <ul class="tabs">
+      <li class="active">
+        <a>FIRST PAGE</a>
+      </li><li>
+        <a>TAB 2</a>
+      </li><li>
+        <a>ANOTHER TAB</a>
+      </li><li>
+        <a>LAST TAB</a>
+      </li>
+    </ul>
+  </div>
+	<div id="wrapper"></div>
+
+<script type="text/x-tmpl" id="page1">
+  <h1>Test</h1>
+  <p>This is tabbed page with support for swipe gestures to navigate between pages.</p>
+	<p>The Three Laws of Robotics (often shortened to The Three Laws or Three Laws) are a set of rules devised by the science fiction author Isaac Asimov and later added to. The rules are introduced in his 1942 short story "Runaround", although they were foreshadowed in a few earlier stories.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</script>
+
+<script type="text/x-tmpl" id="page2">
+  Hej, dette er side to.
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</script>
+
+<script type="text/x-tmpl" id="page3">
+  Hej, dette er side tre.
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</script>
+
+<script type="text/x-tmpl" id="page4">
+  Hej, dette er side Fire.
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function(event) {
+var	carousel,
+	el,
+	i,
+	page,
+	slides = [
+		'<strong>Swipe</strong> to know more &gt;&gt;&gt;<br>Or scroll down for <em>Lorem Ipsum</em>',
+		'1. A robot may not injure a human being or, through inaction, allow a human being to come to harm.',
+		'2. A robot must obey the orders given to it by human beings, except where such orders would conflict with the First Law.',
+	];
+
+var pages = [ document.getElementById('page1'),
+              document.getElementById('page2'),
+              document.getElementById('page3'),
+              document.getElementById('page4') ]; 
+
+var initializePage = function(i, page) {
+	var el = document.createElement('div');
+	el.innerHTML = pages[i].innerHTML;
+	page.appendChild(el)
+};
+
+carousel = new SwipeView('#wrapper', {
+	numberOfPages: pages.length,
+	hastyPageFlip: false,
+  initializePage: initializePage,
+});
+
+carousel.generatePage = function(i, page) {
+  console.log('generating ' + i);
+  var el = page.querySelector('div');
+  el.innerHTML = pages[i].innerHTML;
+};
+
+var markActiveTab = function(i) {
+  document.querySelector('.tabs li.active').classList.remove('active');
+  var menuLis = document.querySelectorAll('.tabs li');
+  carousel._scrollTo();
+  menuLis[i].classList.add('active');
+};
+
+var changePage = function(i) {
+  markActiveTab(i);
+  carousel.goToPage(i);
+};
+
+carousel.onFlip(function() {
+  markActiveTab(carousel.pageIndex);
+});
+
+var menuLinks = document.querySelectorAll('.tabs a');
+for (var i = 0; i < menuLinks.length; i++) {
+  menuLinks[i].addEventListener('click', changePage.bind(null, i));
+}
+var headerHeight = document.getElementById('top-bar').clientHeight;
+document.getElementById('wrapper').style.top = headerHeight + 'px';
+});
+</script>
+
+</body>
+</html>
