@@ -1,0 +1,40 @@
+body {
+	padding:0;
+	margin:0;
+  text-align: center;
+	background:#fff;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	color:#333;
+	font-family: sans-serif;
+	font-size: 1em;
+}
+
+#top-bar {
+  color: #ffffff;
+}
+
+#top-bar > .header {
+  background: #03a9f4;
+  border-bottom: 2px solid #0277bd;
+}
+
+#top-bar > .header > h1 {
+  padding: .2em .6em;
+  font-weight: 500;
+}
+
+h1 {
+	font-size:1.8em;
+	margin:0;
+}
+
+#wrapper {
+	width:100%;
+  position: absolute;
+  top: 95px;
+  bottom: 0;
+	background: #fefefe;
+	border-bottom:1px solid #aaa;
+}

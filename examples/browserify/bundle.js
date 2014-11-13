@@ -1,3 +1,27 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var Swipeview = require('../../src/swipeview.js').SwipeView;
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  var initializePage = function(i, page) {
+    var el = document.createElement('h1');
+    el.innerHTML = 'Page ' + i;
+    page.appendChild(el);
+  };
+
+  console.log(Swipeview);
+
+  carousel = new Swipeview('#wrapper', {
+    numberOfPages: 5,
+    initializePage: initializePage,
+  });
+
+  carousel.generatePage = function(i, page) {
+    var el = page.querySelector('h1');
+    el.innerHTML = 'Page ' + i;
+  };
+});
+
+},{"../../src/swipeview.js":2}],2:[function(require,module,exports){
 /*
  * web-swipe-view — Copyright (c) 2014 Simon Friis Vindum
  * SwipeView v1.0 — Copyright (c) 2012 Matteo Spinelli, http://cubiq.org
@@ -421,4 +445,6 @@
   }
   console.log(root);
   root.SwipeView = SwipeView;
-}(typeof exports !== 'undefined' ? exports : window));
+}(typeof exports !== undefined ? exports : window));
+
+},{}]},{},[1]);
