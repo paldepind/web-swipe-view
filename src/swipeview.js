@@ -362,12 +362,12 @@
 
       // Flip the page, directionX == -1 when swiping right and +1 when swiping left
       this.page = (this.page - this.directionX);
-      this.currentMasterPage = (((this.page + 1) % 3) + 3) % 3;
-      this.pageIndex = (this.pageIndex - this.directionX + this.options.numberOfPages) % this.options.numberOfPages;
-      pageFlip = (this.currentMasterPage - this.directionX + 3) % 3;
+      this.currentMasterPage = mod(this.pase + 1, 3);
+      this.pageIndex = mod(this.pageIndex - this.directionX, this.options.numberOfPages);
+      pageFlip = mod(this.currentMasterPage - this.directionX, 3);
       pageFlipIndex = this.page - this.directionX;
       this.masterPages[pageFlip].style.left = (this.page - this.directionX) * 100 + '%';
-      pageFlipIndex = (this.pageIndex - this.directionX + this.options.numberOfPages) % this.options.numberOfPages;
+      pageFlipIndex = mod(this.pageIndex - this.directionX, this.options.numberOfPages);
 
       // Add active class to current page
       this.masterPages[this.currentMasterPage].classList.add('swipeview-active');
