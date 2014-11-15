@@ -1,11 +1,8 @@
 body {
-	padding:0;
-	margin:0;
-	background:#fff;
-	-webkit-user-select:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	color:#333;
+	padding: 0;
+	margin: 0;
+	background: #fff;
+	color: #333;
 	font-family: sans-serif;
 	font-size: 1em;
 }
@@ -99,6 +96,9 @@ p {
   bottom: 0;
 	background: #fefefe;
 	border-bottom:1px solid #aaa;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
 
 #swipeview-slider > div {
