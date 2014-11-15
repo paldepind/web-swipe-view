@@ -11,7 +11,10 @@
 </head>
 
 <body>
-	<div id="wrapper"></div>
+	<div id="wrapper">
+    <img class="loading" />
+    <span></span>
+  </div>
 	<ul id="nav">
 		<li id="prev" onclick="gallery.prev()">-</li>
 		<li class="selected" onclick="gallery.goToPage(0)"></li>
@@ -77,29 +80,11 @@ var	gallery,
 		}
 	];
 
-var initializePage = function(i, page) {
-	var el = document.createElement('img');
-	el.className = 'loading';
-	el.src = slides[i].img;
-	el.width = slides[i].width;
-	el.height = slides[i].height;
-	el.onload = function () { this.className = ''; }
-  page.appendChild(el);
-
-	el = document.createElement('span');
-	el.innerHTML = slides[i].desc;
-  page.appendChild(el);
-}
-
-gallery = new SwipeView('#wrapper', {
-  numberOfPages: slides.length,
-  initializePage: initializePage
-});
-
-gallery.generatePage = function(i, page) {
+var generatePage = function(i, page) {
   console.log('generating ' + i);
   el = page.querySelector('img');
   el.className = 'loading';
+	el.onload = function () { this.className = ''; }
   el.src = slides[i].img;
   el.width = slides[i].width;
   el.height = slides[i].height;
@@ -107,6 +92,11 @@ gallery.generatePage = function(i, page) {
   el = page.querySelector('span');
   el.innerHTML = slides[i].desc;
 };
+
+gallery = new SwipeView('#wrapper', {
+  numberOfPages: slides.length,
+  generatePage: generatePage,
+});
 
 gallery.onFlip(function () {
 	document.querySelector('#nav .selected').className = '';

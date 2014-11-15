@@ -12,7 +12,9 @@
 
 <body>
 	<h1>Three Laws of Robotics</h1>
-	<div id="wrapper"></div>
+	<div id="wrapper">
+    <span></span>
+  </div>
 
 	<p>The Three Laws of Robotics (often shortened to The Three Laws or Three Laws) are a set of rules devised by the science fiction author Isaac Asimov and later added to. The rules are introduced in his 1942 short story "Runaround", although they were foreshadowed in a few earlier stories.</p>
 
@@ -41,22 +43,16 @@ var	carousel,
 		'3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws.'
 	];
 
-var initializePage = function(i, page) {
-	el = document.createElement('span');
-	el.innerHTML = slides[i];
-  page.appendChild(el);
-}
+var generatePage = function(i, page) {
+  el = page.querySelector('span');
+  el.innerHTML = slides[i];
+};
 
 carousel = new SwipeView('#wrapper', {
 	numberOfPages: slides.length,
 	hastyPageFlip: true,
-  initializePage: initializePage
+  generatePage: generatePage
 });
-
-carousel.generatePage = function(i, page) {
-  el = page.querySelector('span');
-  el.innerHTML = slides[i];
-};
 
 </script>
 

@@ -28,7 +28,7 @@
       </li>
     </ul>
   </div>
-	<div id="wrapper"></div>
+  <div id="wrapper"><div></div></div>
 
 <script type="text/x-tmpl" id="page1">
   <h1>Test</h1>
@@ -76,23 +76,17 @@ var pages = [ document.getElementById('page1'),
               document.getElementById('page3'),
               document.getElementById('page4') ]; 
 
-var initializePage = function(i, page) {
-	var el = document.createElement('div');
-	el.innerHTML = pages[i].innerHTML;
-	page.appendChild(el)
+var generatePage = function(i, page) {
+  console.log('generating ' + i);
+  var el = page.querySelector('div');
+  el.innerHTML = pages[i].innerHTML;
 };
 
 carousel = new SwipeView('#wrapper', {
 	numberOfPages: pages.length,
 	hastyPageFlip: false,
-  initializePage: initializePage,
+  generatePage: generatePage,
 });
-
-carousel.generatePage = function(i, page) {
-  console.log('generating ' + i);
-  var el = page.querySelector('div');
-  el.innerHTML = pages[i].innerHTML;
-};
 
 var markActiveTab = function(i) {
   document.querySelector('.tabs li.active').classList.remove('active');

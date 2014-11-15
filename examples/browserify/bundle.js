@@ -1,24 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// Compile with: browserify script.js -o bundle.js
+
 var Swipeview = require('../../src/swipeview.js').SwipeView;
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  var initializePage = function(i, page) {
-    var el = document.createElement('h1');
-    el.innerHTML = 'Page ' + i;
-    page.appendChild(el);
+  var generatePage = function(i, page) {
+    var el = page.querySelector('h1');
+    el.innerHTML = 'Page ' + (i + 1);
   };
-
-  console.log(Swipeview);
 
   carousel = new Swipeview('#wrapper', {
     numberOfPages: 5,
-    initializePage: initializePage,
+    generatePage: generatePage,
   });
-
-  carousel.generatePage = function(i, page) {
-    var el = page.querySelector('h1');
-    el.innerHTML = 'Page ' + i;
-  };
 });
 
 },{"../../src/swipeview.js":2}],2:[function(require,module,exports){
@@ -77,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   var SwipeView = function (el, options) {
     var i, div, className, pageIndex;
     this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
+    var initialHTML = this.wrapper.innerHTML;
+    this.wrapper.innerHTML = ''; // Clear the wrapper
     this.options = {
       numberOfPages: 3,
       snapThreshold: null,
@@ -106,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       div = document.createElement('div');
       div.id = 'swipeview-masterpage-' + (i+1);
       div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0;height:100%;width:100%;left:' + i*100 + '%';
+      div.innerHTML = initialHTML;
       if (!div.dataset) div.dataset = {};
       pageIndex = (i === -1 ? this.options.numberOfPages - 1 : i);
       div.dataset.pageIndex = pageIndex;
@@ -115,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
       this.slider.appendChild(div);
       this.masterPages.push(div);
-      this.options.initializePage(pageIndex, div);
+      this.options.generatePage(pageIndex, div);
     }
     
     this.masterPages[1].classList.add('swipeview-active');
@@ -421,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       for (var i=0; i<3; i++) {
         this.masterPages[i].classList.remove('swipeview-loading');
         if (this.masterPages[i].dataset.pageIndex !== this.masterPages[i].dataset.upcomingPageIndex) {
-          this.generatePage(this.masterPages[i].dataset.upcomingPageIndex, this.masterPages[i]);
+          this.options.generatePage(parseInt(this.masterPages[i].dataset.upcomingPageIndex, 10), this.masterPages[i]);
         }
         this.masterPages[i].dataset.pageIndex = this.masterPages[i].dataset.upcomingPageIndex;
       }
@@ -445,6 +442,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
   console.log(root);
   root.SwipeView = SwipeView;
-}(typeof exports !== undefined ? exports : window));
+}(typeof exports !== 'undefined' ? exports : window));
 
 },{}]},{},[1]);

@@ -53,6 +53,8 @@
   var SwipeView = function (el, options) {
     var i, div, className, pageIndex;
     this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
+    var initialHTML = this.wrapper.innerHTML;
+    this.wrapper.innerHTML = ''; // Clear the wrapper
     this.options = {
       numberOfPages: 3,
       snapThreshold: null,
@@ -82,6 +84,7 @@
       div = document.createElement('div');
       div.id = 'swipeview-masterpage-' + (i+1);
       div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0;height:100%;width:100%;left:' + i*100 + '%';
+      div.innerHTML = initialHTML;
       if (!div.dataset) div.dataset = {};
       pageIndex = (i === -1 ? this.options.numberOfPages - 1 : i);
       div.dataset.pageIndex = pageIndex;
@@ -91,7 +94,7 @@
 
       this.slider.appendChild(div);
       this.masterPages.push(div);
-      this.options.initializePage(pageIndex, div);
+      this.options.generatePage(pageIndex, div);
     }
     
     this.masterPages[1].classList.add('swipeview-active');
@@ -397,7 +400,7 @@
       for (var i=0; i<3; i++) {
         this.masterPages[i].classList.remove('swipeview-loading');
         if (this.masterPages[i].dataset.pageIndex !== this.masterPages[i].dataset.upcomingPageIndex) {
-          this.generatePage(this.masterPages[i].dataset.upcomingPageIndex, this.masterPages[i]);
+          this.options.generatePage(parseInt(this.masterPages[i].dataset.upcomingPageIndex, 10), this.masterPages[i]);
         }
         this.masterPages[i].dataset.pageIndex = this.masterPages[i].dataset.upcomingPageIndex;
       }
