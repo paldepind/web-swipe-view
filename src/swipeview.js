@@ -29,6 +29,7 @@
 
   // Helpers
   var translateZ = has3d ? ' translateZ(0)' : '';
+  var mod = function(n, m) { return ((n % m) + m) % m; };
 
   // Events
   var resizeEvent = 'onorientationchange' in window ? 'orientationchange' : 'resize';
@@ -56,6 +57,7 @@
     var initialHTML = this.wrapper.innerHTML;
     this.wrapper.innerHTML = ''; // Clear the wrapper
     this.options = {
+      initialPage: 0,
       numberOfPages: 3,
       snapThreshold: null,
       loop: true,
@@ -86,7 +88,7 @@
       div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0;height:100%;width:100%;left:' + i*100 + '%';
       div.innerHTML = initialHTML;
       if (!div.dataset) div.dataset = {};
-      pageIndex = (i === -1 ? this.options.numberOfPages - 1 : i);
+      pageIndex = mod(this.options.initialPage + i, this.options.numberOfPages);
       div.dataset.pageIndex = pageIndex;
       div.dataset.upcomingPageIndex = pageIndex;
       
