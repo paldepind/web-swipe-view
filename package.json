@@ -1,6 +1,6 @@
 {
   "name": "web-swipe-view",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Horizontal swipe views for mobile web applications",
   "main": "src/swipeview.js",
   "directories": {
