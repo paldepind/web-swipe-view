@@ -17,10 +17,10 @@
   </div>
 	<ul id="nav">
 		<li id="prev" onclick="gallery.prev()">-</li>
-		<li class="selected" onclick="gallery.goToPage(0)"></li>
+		<li onclick="gallery.goToPage(0)"></li>
 		<li onclick="gallery.goToPage(1)"></li>
 		<li onclick="gallery.goToPage(2)"></li>
-		<li onclick="gallery.goToPage(3)"></li>
+		<li class="selected" onclick="gallery.goToPage(3)"></li>
 		<li onclick="gallery.goToPage(4)"></li>
 		<li onclick="gallery.goToPage(5)"></li>
 		<li onclick="gallery.goToPage(6)"></li>
@@ -36,12 +36,6 @@ var	gallery,
 	page,
 	dots = document.querySelectorAll('#nav li'),
 	slides = [
-		{
-			img: 'images/pic00.jpg',
-			width: 300,
-			height: 225,
-			desc: 'City Hall, Aarhus, Denmark'
-		},
 		{
 			img: 'images/pic01.jpg',
 			width: 300,
@@ -59,6 +53,12 @@ var	gallery,
 			width: 300,
 			height: 213,
 			desc: 'Colosseo, Rome, Italy'
+		},
+		{
+			img: 'images/pic00.jpg',
+			width: 300,
+			height: 225,
+			desc: 'City Hall, Aarhus, Denmark'
 		},
 		{
 			img: 'images/pic04.jpg',
@@ -96,6 +96,7 @@ var generatePage = function(i, page) {
 gallery = new SwipeView('#wrapper', {
   numberOfPages: slides.length,
   generatePage: generatePage,
+  initialPage: 3,
 });
 
 gallery.onFlip(function () {
