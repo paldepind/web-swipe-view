@@ -91,7 +91,6 @@ carousel = new SwipeView('#wrapper', {
 var markActiveTab = function(i) {
   document.querySelector('.tabs li.active').classList.remove('active');
   var menuLis = document.querySelectorAll('.tabs li');
-  carousel._scrollTo();
   menuLis[i].classList.add('active');
 };
 

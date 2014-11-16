@@ -23,7 +23,6 @@
   // Browser capabilities
   var has3d = prefixStyle('perspective') in dummyStyle;
   var hasTouch = 'ontouchstart' in window;
-  console.log(hasTouch);
   var hasTransform = !!vendor;
   var hasTransitionEnd = prefixStyle('transition') in dummyStyle;
 
@@ -183,9 +182,7 @@
       this.page += turnOffset;
       this.pageIndex = newPageIndex;
 
-      this.prevMasterPage = p % 3;
-      this.currentMasterPage = (this.currentMasterPage+turnOffset) % 3;
-      this.nextMasterPage = (p + 2) % 3;
+      this.currentMasterPage = mod(this.currentMasterPage+turnOffset, 3);
       if (turnOffset !== 1 && turnOffset !== -1) {
         this.masterPages[this.currentMasterPage].classList.add('swipeview-loading');
       }
@@ -196,8 +193,6 @@
       var pages = this.currentMasterPage === 0 ? [2, 0, 1] :
                   this.currentMasterPage === 1 ? [0, 1, 2] :
                                                  [1, 2, 0];
-
-      console.log([this.prevMasterPage, this.currentMasterPage, this.nextMasterPage]);
 
       this.masterPages[pages[0]].style.left = this.page * 100 - 100 + '%';
       this.masterPages[pages[1]].style.left = this.page * 100 + '%';
@@ -307,8 +302,6 @@
           this.initiated = false;
           return;
         } else {
-          console.log('swipe started');
-          console.log(window.scrollY);
           this.directionLocked = true;
         }
       }
@@ -396,7 +389,6 @@
     },
     
     _flip: function () {
-      console.log('flip');
       this._triggerEvent('flip');
 
       for (var i=0; i<3; i++) {
@@ -413,17 +405,11 @@
       ev.initEvent('swipeview-' + type, true, true);
       this.wrapper.dispatchEvent(ev);
     },
-
-    _scrollTo: function() {
-      console.log('going to the top');
-      window.scrollTo(0, 0);
-    },
   };
 
   function prefixStyle (style) {
     return (vendor === '') ? style
       : vendor + style.charAt(0).toUpperCase() + style.substr(1);
   }
-  console.log(root);
   root.SwipeView = SwipeView;
 }(typeof exports !== 'undefined' ? exports : window));
