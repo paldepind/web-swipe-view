@@ -1,12 +1,12 @@
 describe('SwipeView', function() {
-  var container;
   var expect = chai.expect;
   var assert = chai.assert;
 
   var noop = function() { return; };
+  var container = document.getElementById('fixture');
 
   beforeEach(function() {
-    container = document.createElement('div');
+    container.innerHTML = '';
   });
 
   it('initializes the container with a horizontal slider', function() {
@@ -31,6 +31,18 @@ describe('SwipeView', function() {
     assert(spy.calledWith(2));
     assert(spy.calledWith(3));
     assert(spy.calledWith(4));
+  });
+
+  it('it turn to correct page after initial', function(done) {
+    var spy = sinon.spy();
+    var swipeview = new SwipeView(container, {
+      initialPage: 3, numberOfPages: 6, generatePage: spy, pageTurnSpeed: 2,
+    });
+    swipeview.next();
+    assert(spy.calledWith(2));
+    assert(spy.calledWith(3));
+    assert(spy.calledWith(4));
+    setTimeout(function() { assert(spy.calledWith(5)); done(); }, 3);
   });
 
   it('prefills the pages with the original container content', function(){

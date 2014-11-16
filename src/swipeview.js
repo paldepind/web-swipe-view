@@ -63,10 +63,11 @@
       loop: true,
       pageTurnSpeed: 200,
     };
-  
     // User defined options
     for (i in options) this.options[i] = options[i];
     
+    this.pageIndex = this.options.initialPage;
+  
     this.wrapper.style.overflow = 'hidden';
     if (getComputedStyle(this.wrapper).getPropertyValue('position') !== 'absolute') {
       this.wrapper.style.position = 'relative';
@@ -170,7 +171,6 @@
     },
     
     goToPage: function (p) {
-      console.log(this.page);
       this.masterPages[this.currentMasterPage].classList.remove('swipeview-active');
       this.masterPages[this.currentMasterPage].style.position = 'absolute';
       
@@ -184,7 +184,7 @@
       this.pageIndex = newPageIndex;
 
       this.prevMasterPage = p % 3;
-      this.currentMasterPage = (p + 1) % 3;
+      this.currentMasterPage = (this.currentMasterPage+turnOffset) % 3;
       this.nextMasterPage = (p + 2) % 3;
       if (turnOffset !== 1 && turnOffset !== -1) {
         this.masterPages[this.currentMasterPage].classList.add('swipeview-loading');
@@ -362,7 +362,7 @@
 
       // Flip the page, directionX == -1 when swiping right and +1 when swiping left
       this.page = (this.page - this.directionX);
-      this.currentMasterPage = mod(this.pase + 1, 3);
+      this.currentMasterPage = mod(this.page + 1, 3);
       this.pageIndex = mod(this.pageIndex - this.directionX, this.options.numberOfPages);
       pageFlip = mod(this.currentMasterPage - this.directionX, 3);
       pageFlipIndex = this.page - this.directionX;
@@ -375,10 +375,10 @@
 
       // Add loading class to flipped page
       this.masterPages[pageFlip].classList.add('swipeview-loading');
-      
+ 
       this.masterPages[pageFlip].dataset.upcomingPageIndex = pageFlipIndex; // Index to be loaded in the newly flipped page
 
-      newX = -this.page * this.pageWidth;
+      var newX = -this.page * this.pageWidth;
       
       this.slider.style[transitionDuration] = Math.floor(this.options.pageTurnSpeed * Math.abs(this.x - newX) / this.pageWidth) + 'ms';
 
