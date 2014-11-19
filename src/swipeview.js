@@ -92,8 +92,6 @@
       div.dataset.pageIndex = pageIndex;
       div.dataset.upcomingPageIndex = pageIndex;
       
-      if (!this.options.loop && i === -1) div.style.visibility = 'hidden';
-
       this.slider.appendChild(div);
       this.masterPages.push(div);
       this.options.generatePage(pageIndex, div);
@@ -309,7 +307,7 @@
       e.preventDefault();
 
       if (!this.options.loop && (newX > 0 || newX < this.maxX)) {
-        newX = this.x + (deltaX / 2);
+        return;
       }
 
       if (!this.thresholdExceeded && dist >= this.snapThreshold) {
@@ -319,10 +317,10 @@
         this.thresholdExceeded = false;
         this._triggerEvent('movein');
       }
-      
+
       this._pos(newX);
     },
-    
+
     _end: function (e) {
       if (!this.initiated) return;
       
@@ -333,9 +331,9 @@
       
       if (!this.moved) return;
 
-      if (!this.options.loop && (this.x > 0 || this.x < this.maxX)) {
+      if (!this.options.loop && (this.x >= 0 || this.x <= this.maxX)) {
         dist = 0;
-        this._triggerEvent('movein');
+        //this._triggerEvent('movein');
       }
 
       // Check if we exceeded the snap threshold
@@ -384,7 +382,6 @@
         this._flip(); // If we swiped all the way long to the next page (extremely rare but still)
       } else {
         this._pos(newX);
-        //if (this.options.hastyPageFlip) this._flip();
       }
     },
     
