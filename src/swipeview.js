@@ -378,11 +378,7 @@
         this.masterPages[pageFlip].style.visibility = newX === 0 || newX == this.maxX ? 'hidden' : '';
       }
 
-      if (this.x == newX) {
-        this._flip(); // If we swiped all the way long to the next page (extremely rare but still)
-      } else {
-        this._pos(newX);
-      }
+      this._pos(newX);
     },
     
     _flip: function () {
