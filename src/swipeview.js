@@ -100,9 +100,9 @@
     this.masterPages[1].classList.add('swipeview-active');
 
     window.addEventListener(resizeEvent, this, false);
-    this.wrapper.addEventListener(startEvent, this, false);
-    this.wrapper.addEventListener(moveEvent, this, false);
-    this.wrapper.addEventListener(endEvent, this, false);
+    this.slider.addEventListener(startEvent, this, false);
+    this.slider.addEventListener(moveEvent, this, false);
+    this.slider.addEventListener(endEvent, this, false);
     this.slider.addEventListener(transitionEndEvent, this, false);
     // in Opera >= 12 the transitionend event is lowercase so we register both events
     if ( vendor == 'O' ) this.slider.addEventListener(transitionEndEvent.toLowerCase(), this, false);
@@ -116,37 +116,22 @@
     customEvents: [],
     
     onFlip: function (fn) {
-      this.wrapper.addEventListener('swipeview-flip', fn, false);
-      this.customEvents.push(['flip', fn]);
+      this.slider.addEventListener('swipeview-flip', fn, false);
     },
-    
     onMoveOut: function (fn) {
-      this.wrapper.addEventListener('swipeview-moveout', fn, false);
-      this.customEvents.push(['moveout', fn]);
+      this.slider.addEventListener('swipeview-moveout', fn, false);
     },
-
     onMoveIn: function (fn) {
-      this.wrapper.addEventListener('swipeview-movein', fn, false);
-      this.customEvents.push(['movein', fn]);
+      this.slider.addEventListener('swipeview-movein', fn, false);
     },
-    
     onTouchStart: function (fn) {
-      this.wrapper.addEventListener('swipeview-touchstart', fn, false);
-      this.customEvents.push(['touchstart', fn]);
+      this.slider.addEventListener('swipeview-touchstart', fn, false);
     },
-
     destroy: function () {
-      while (this.customEvents.length) {
-        this.wrapper.removeEventListener('swipeview-' + this.customEvents[0][0], this.customEvents[0][1], false);
-        this.customEvents.shift();
-      }
-      
-      // Remove the event listeners
+      // Remove the global event listener
       window.removeEventListener(resizeEvent, this, false);
-      this.wrapper.removeEventListener(startEvent, this, false);
-      this.wrapper.removeEventListener(moveEvent, this, false);
-      this.wrapper.removeEventListener(endEvent, this, false);
-      this.slider.removeEventListener(transitionEndEvent, this, false);
+      this.wrapper.removeChild(this.slider);
+      this.slider = null; // Remove reference to slider and it's listeners
     },
 
     refreshSize: function () {
@@ -391,9 +376,9 @@
     },
     
     _triggerEvent: function (type) {
-      var ev = document.createEvent("Event");
+      var ev = document.createEvent('Event');
       ev.initEvent('swipeview-' + type, true, true);
-      this.wrapper.dispatchEvent(ev);
+      this.slider.dispatchEvent(ev);
     },
   };
 
