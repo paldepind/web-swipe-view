@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>SwipeView memory leak test</title>
+	<script type="text/javascript" src="../src/swipeview.js"></script>
+</head>
+
+<body>
+  <a id="start">Start</a>
+	<div id="wrapper">
+  </div>
+	
+<script type="text/javascript">
+
+var generatePage = function(i, page) {
+  console.log('Generating ' + i);
+};
+
+var createAndDestroy = function() {
+  var swipeview = new SwipeView('#wrapper', {
+    numberOfPages: 7,
+    generatePage: generatePage,
+    initialPage: 3,
+  });
+
+  swipeview.onFlip(function () {
+    console.log('On flip');
+  });
+
+  swipeview.onTouchStart(function () {
+    console.log('On touch start');
+  });
+
+  swipeview.onMoveOut(function () {
+    console.log('On move out');
+  });
+
+  swipeview.onMoveIn(function () {
+    console.log('On move in');
+  });
+  swipeview.destroy();
+};
+
+var interval;
+var el = document.getElementById('start');
+el.addEventListener('click', function() {
+  if (!interval) {
+    el.innerHTML = 'Stop';
+    interval = setInterval(createAndDestroy, 50);
+  } else {
+    el.innerHTML = 'Start';
+    clearInterval(interval);
+    interval = null;
+  }
+});
+
+</script>
+</body>
+</html>
