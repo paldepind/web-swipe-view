@@ -98,7 +98,6 @@
     }
     
     this.masterPages[1].classList.add('swipeview-active');
-    //this.masterPages[1].style.position = 'relative';
 
     window.addEventListener(resizeEvent, this, false);
     this.wrapper.addEventListener(startEvent, this, false);
@@ -186,7 +185,6 @@
       }
 
       this.masterPages[this.currentMasterPage].classList.add('swipeview-active');
-      this.masterPages[this.currentMasterPage].style.position = 'relative';
 
       var pages = this.currentMasterPage === 0 ? [2, 0, 1] :
                   this.currentMasterPage === 1 ? [0, 1, 2] :
@@ -362,7 +360,6 @@
 
       // Add active class to current page
       this.masterPages[this.currentMasterPage].classList.add('swipeview-active');
-      this.masterPages[this.currentMasterPage].style.position = 'relative';
 
       // Add loading class to flipped page
       this.masterPages[pageFlip].classList.add('swipeview-loading');

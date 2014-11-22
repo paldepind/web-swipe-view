@@ -53,7 +53,7 @@ describe('SwipeView', function() {
     });
   });
 
-  it('wrapper position should not be relative if unspecified', function(){
+  it('wrapper position should be relative if unspecified', function(){
     new SwipeView(container, { generatePage: noop });
     expect(container.style.position).to.equal('relative');
   });
