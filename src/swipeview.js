@@ -369,6 +369,9 @@
       for (var i=0; i<3; i++) {
         this.masterPages[i].classList.remove('swipeview-loading');
         if (this.masterPages[i].dataset.pageIndex !== this.masterPages[i].dataset.upcomingPageIndex) {
+          if (typeof this.options.teardownPage === 'function') {
+            this.options.teardownPage(parseInt(this.masterPages[i].dataset.pageIndex, 10), this.masterPages[i]);
+          }
           this.options.generatePage(parseInt(this.masterPages[i].dataset.upcomingPageIndex, 10), this.masterPages[i]);
         }
         this.masterPages[i].dataset.pageIndex = this.masterPages[i].dataset.upcomingPageIndex;

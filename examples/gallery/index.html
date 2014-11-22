@@ -93,9 +93,14 @@ var generatePage = function(i, page) {
   el.innerHTML = slides[i].desc;
 };
 
+var teardownPage = function(i, page) {
+  console.log('teardown ' + i);
+};
+
 gallery = new SwipeView('#wrapper', {
   numberOfPages: slides.length,
   generatePage: generatePage,
+  teardownPage: teardownPage,
   initialPage: 3,
 });
 

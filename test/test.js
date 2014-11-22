@@ -33,7 +33,7 @@ describe('SwipeView', function() {
     assert(spy.calledWith(4));
   });
 
-  it('it turn to correct page after initial', function(done) {
+  it('turns to correct page after initial', function(done) {
     var spy = sinon.spy();
     var swipeview = new SwipeView(container, {
       initialPage: 3, numberOfPages: 6, generatePage: spy, pageTurnSpeed: 2,
@@ -43,6 +43,15 @@ describe('SwipeView', function() {
     assert(spy.calledWith(3));
     assert(spy.calledWith(4));
     setTimeout(function() { assert(spy.calledWith(5)); done(); }, 3);
+  });
+
+  it('tears down pages', function(done) {
+    var spy = sinon.spy();
+    var swipeview = new SwipeView(container, {
+      initialPage: 3, numberOfPages: 6, generatePage: noop, teardownPage: spy, pageTurnSpeed: 2,
+    });
+    swipeview.next();
+    setTimeout(function() { assert(spy.calledWith(2)); done(); }, 4);
   });
 
   it('prefills the pages with the original container content', function(){
