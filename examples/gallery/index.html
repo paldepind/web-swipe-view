@@ -100,15 +100,22 @@ gallery = new SwipeView('#wrapper', {
 });
 
 gallery.onFlip(function () {
+  console.log('On flip');
 	document.querySelector('#nav .selected').className = '';
 	dots[gallery.pageIndex+1].className = 'selected';
 });
 
+gallery.onTouchStart(function () {
+  console.log('On touch start');
+});
+
 gallery.onMoveOut(function () {
+  console.log('On move out');
 	gallery.masterPages[gallery.currentMasterPage].className = gallery.masterPages[gallery.currentMasterPage].className.replace(/(^|\s)swipeview-active(\s|$)/, '');
 });
 
 gallery.onMoveIn(function () {
+  console.log('On move in');
 	var className = gallery.masterPages[gallery.currentMasterPage].className;
 	/(^|\s)swipeview-active(\s|$)/.test(className) || (gallery.masterPages[gallery.currentMasterPage].className = !className ? 'swipeview-active' : className + ' swipeview-active');
 });

@@ -63,4 +63,15 @@ describe('SwipeView', function() {
     new SwipeView(container, { generatePage: noop });
     expect(container.style.position).to.equal('absolute');
   });
+  describe('Events', function(){
+    it('triggers flip on page turn', function() {
+      var spy = sinon.spy();
+      var swipeview = new SwipeView(container, {
+        numberOfPages: 6, generatePage: spy, pageTurnSpeed: 2,
+      });
+      swipeview.onFlip(spy);
+      swipeview.next();
+      setTimeout(function() { assert(spy.calledOnce); done(); }, 3);
+    });
+  });
 });
